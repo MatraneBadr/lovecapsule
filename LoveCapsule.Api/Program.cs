@@ -1,6 +1,8 @@
 using LoveCapsule.Api.Services;
 using LoveCapsule.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Npgsql;
+
 var builder = WebApplication.CreateBuilder(args);
 var databaseUrl = Environment.GetEnvironmentVariable("DB_CONNECTION");
 if (string.IsNullOrEmpty(databaseUrl))
@@ -10,21 +12,25 @@ if (string.IsNullOrEmpty(databaseUrl))
 var uri = new Uri(databaseUrl);
 var userInfo = uri.UserInfo.Split(':');
 
-int port = uri.Port;
-if (port <= 0)
+var npgsqlBuilder = new NpgsqlConnectionStringBuilder
 {
-    port = 5432;
-}
+    Host = uri.Host,
+    Port = uri.Port > 0 ? uri.Port : 5432,
+    Database = uri.AbsolutePath.Trim('/'),
+    Username = userInfo[0],
+    Password = userInfo[1],
+    SslMode = SslMode.Require,
+    TrustServerCertificate = true
+};
+
 QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
 // Add services to the container.
 
 builder.Services.AddControllers();
 
-var connectionString =
-    $"Host={uri.Host};Port={uri.Port};Database={uri.AbsolutePath.Trim('/')};Username={userInfo[0]};Password={userInfo[1]};SSL Mode=Require;Trust Server Certificate=true";
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(connectionString));
+    options.UseNpgsql(npgsqlBuilder.ConnectionString));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
