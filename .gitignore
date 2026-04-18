@@ -10,6 +10,13 @@ obj/
 # Logs
 *.log
 
-# Env files
+# Env (secrets)
 .env
 
+# OS
+.DS_Store
+Thumbs.db
+
+# Rider / VSCode (optionnel)
+.idea/
+.vscode/
