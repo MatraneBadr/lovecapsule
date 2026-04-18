@@ -2,10 +2,19 @@ using LoveCapsule.Api.Services;
 using LoveCapsule.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
-var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
+var databaseUrl = Environment.GetEnvironmentVariable("DB_CONNECTION");
+if (string.IsNullOrEmpty(databaseUrl))
+{
+    throw new Exception("DB_CONNECTION is missing !");
+}
 var uri = new Uri(databaseUrl);
 var userInfo = uri.UserInfo.Split(':');
-var port = uri.Port > 0 ? uri.Port : 5432;
+
+int port = uri.Port;
+if (port <= 0)
+{
+    port = 5432;
+}
 QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
 // Add services to the container.
 
