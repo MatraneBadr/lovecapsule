@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 var databaseUrl = Environment.GetEnvironmentVariable("DB_CONNECTION");
 var uri = new Uri(databaseUrl);
 var userInfo = uri.UserInfo.Split(':');
+var port = uri.Port > 0 ? uri.Port : 5432;
 QuestPDF.Settings.License = QuestPDF.Infrastructure.LicenseType.Community;
 // Add services to the container.
 
