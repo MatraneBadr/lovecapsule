@@ -19,3 +19,6 @@ jobs:
         
       - name: Build
         run: dotnet build
+        
+      - name: Build Docker image
+        run: docker build -t lovecapsule-api
