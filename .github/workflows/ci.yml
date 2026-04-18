@@ -27,7 +27,7 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Tag image
-        run: docker tag lovecapsule-api matraneBadr/lovecapsule-api:latest
+        run: docker tag lovecapsule-api bmat96/lovecapsule-api:latest
 
       - name: Push image
-        run: docker push matraneBadr/lovecapsule-api:latest
+        run: docker push bmat96/lovecapsule-api:latest
