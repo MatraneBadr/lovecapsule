@@ -2,7 +2,7 @@ using LoveCapsule.Api.Services;
 using LoveCapsule.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
-var databaseUrl = Environment.GetEnvironmentVariable("DB_CONNECTION");
+var databaseUrl = Environment.GetEnvironmentVariable("DATABASE_URL");
 var uri = new Uri(databaseUrl);
 var userInfo = uri.UserInfo.Split(':');
 var port = uri.Port > 0 ? uri.Port : 5432;
