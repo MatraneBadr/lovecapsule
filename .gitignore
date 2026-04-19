@@ -20,3 +20,5 @@ Thumbs.db
 # Rider / VSCode (optionnel)
 .idea/
 .vscode/
+
+appsettings.Development.json
