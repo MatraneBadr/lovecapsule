@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace LoveCapsule.Domain.Entities
 {
-    public class Media
+    public class Subscription
     {
         public Guid Id { get; set; }
+        public Guid UserId { get; set; }
 
-        public Guid MessageId { get; set; }
+        public PlanType Plan { get; set; } 
+        public bool IsActive { get; set; }
 
-        public string Url { get; set; } 
-
-        public string Type { get; set; }  // image
+        public DateTime CreatedAt { get; set; }
     }
 }

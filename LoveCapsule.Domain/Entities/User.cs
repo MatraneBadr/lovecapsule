@@ -6,17 +6,11 @@ using System.Threading.Tasks;
 
 namespace LoveCapsule.Domain.Entities
 {
-    public class Message
+    public class User
     {
         public Guid Id { get; set; }
-
-        public Guid EventId { get; set; }
-        public Event Event { get; set; }
-
-        public string Text { get; set; }
-
+        public string Email { get; set; }
+        public string PasswordHash { get; set; }
         public DateTime CreatedAt { get; set; }
-        public string AuthorName { get; set; }
-
     }
 }

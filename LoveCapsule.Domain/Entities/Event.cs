@@ -15,14 +15,11 @@ namespace LoveCapsule.Domain.Entities
 
         public string Slug { get; set; }
 
-        public string Email { get; set; }
-
         public DateTime EventDate { get; set; }
 
         public DateTime CreatedAt { get; set; }
 
         public List<Message> Messages { get; set; } = new List<Message>();
         public Guid UserId { get; set; }
-        public bool IsPaid { get; set; }
     }
 }
