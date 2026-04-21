@@ -94,7 +94,7 @@ namespace LoveCapsule.Api.Controllers
         };
 
             var key = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes("SUPER_SECRET_KEY"));
+                Encoding.UTF8.GetBytes("THIS_IS_MY_SUPER_SECRET_KEY_123456789"));
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
