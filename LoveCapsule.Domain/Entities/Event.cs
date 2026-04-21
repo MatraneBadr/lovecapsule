@@ -22,5 +22,7 @@ namespace LoveCapsule.Domain.Entities
         public DateTime CreatedAt { get; set; }
 
         public List<Message> Messages { get; set; } = new List<Message>();
+        public Guid UserId { get; set; }
+        public bool IsPaid { get; set; }
     }
 }
