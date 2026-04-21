@@ -29,6 +29,9 @@ namespace LoveCapsule.Api.Controllers
             if (string.IsNullOrWhiteSpace(dto.Title))
                 return BadRequest("Title is required");
 
+            if (dto.EventDate < DateTime.UtcNow.AddDays(-1))
+                return BadRequest("Invalid event date");
+
             var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (!Guid.TryParse(userIdClaim, out var userId))
